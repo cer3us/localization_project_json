@@ -1,0 +1,1327 @@
+{
+  "info": {
+    "_postman_id": "a87eba22-8ea2-4c9e-93c1-d73c9ca649d0",
+    "name": "LocJSON",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52400560"
+  },
+  "item": [
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "Create account",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Irog Gudkov\",\r\n    \"email\": \"i.gudkov@zemdex.ru\",\r\n    \"accountType\": \"freelancer\",\r\n    \"companyName\": null,\r\n    \"password\": {\r\n        \"value\": \"password\",\r\n        \"confirmation\": \"password\"\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/account/create",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "account",
+                "create"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create account",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Irog Gudkov\",\r\n    \"email\": \"i.gudkov@zemdex.ru\",\r\n    \"accountType\": \"ltd|freelancer|individual\",\r\n    \"companyName\": \"if accountType = ltd\",\r\n    \"password\": {\r\n        \"value\": \"p@ssword123\",\r\n        \"confirmation\": \"p@ssword123\"\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "/v1/account/create",
+                  "path": [
+                    "v1",
+                    "account",
+                    "create"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\r\n    \"status\": \"success|failed\",\r\n    \"errors\": []\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sign in",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"i.gudkov@zemdex.ru\",\r\n    \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/account/sign-in",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "account",
+                "sign-in"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Sign in",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"i.gudkov@zemdex.ru\",\r\n    \"password\": \"p@ssword123\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/account/sign-in",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "account",
+                    "sign-in"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\r\n    \"token\": \"123qwertrtyyutyu\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get account",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/account",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "account"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get account",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/account",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "account"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"name\": \"Igor Gudkov\",\n    \"email\": \"i.gudkov@zemdex.ru\",\n    \"type\": \"freelancer\",\n    \"companyName\": null\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/v1/users",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "users"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get users",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/users/freelancers?name=Ivan&offset=&limit",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "users",
+                    "freelancers"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "Ivan"
+                    },
+                    {
+                      "key": "offset",
+                      "value": ""
+                    },
+                    {
+                      "key": "limit",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Igor Gudkov\",\r\n        \"email\": \"i.gudkov@zemdex.ru\",\r\n        \"type\": \"freelancer\",\r\n        \"companyName\": null\r\n    }\r\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Team",
+      "item": [
+        {
+          "name": "Assign performer to project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"projectId\": 1,\r\n    \"performerId\": 11\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/team/assign-performer",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "team",
+                "assign-performer"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Assign performer to project",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"projectId\": 1,\r\n    \"performerId\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/team/assign-performer",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "team",
+                    "assign-performer"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Assigned projects",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/v1/team/projects",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "team",
+                "projects"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Assigned projects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/team/projects",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "team",
+                    "projects"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Localization articles content\",\r\n        \"languages\": {\r\n            \"source\": \"ru\",\r\n            \"target\": [\r\n                \"de\",\r\n                \"en\"\r\n            ]\r\n        },\r\n        \"createdAt\": \"23-12-2021 12:12\"\r\n    }\r\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Languages",
+      "item": [
+        {
+          "name": "Languages list",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/languages",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "languages"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Languages list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/languages",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "languages"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": " [\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Russian\",\r\n        \"locale\": \"ru\"\r\n    },\r\n    {\r\n        \"id\": 2,\r\n        \"name\": \"English\",\r\n        \"locale\": \"en\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"name\": \"Spanish\",\r\n        \"locale\": \"es\"\r\n    },\r\n    {\r\n        \"id\": 4,\r\n        \"name\": \"French\",\r\n        \"locale\": \"fr\"\r\n    },\r\n    {\r\n        \"id\": 5,\r\n        \"name\": \"German\",\r\n        \"locale\": \"de\"\r\n    }\r\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Project Test 123\",\r\n    \"description\": \"Test 123 Localization ...\",\r\n    \"languages\": {\r\n        \"source\": 3,\r\n        \"target\": [\r\n            5,\r\n            2\r\n        ]\r\n    },\r\n    \"settings\": {\r\n        \"useMachineTranslation\": true\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/projects",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "projects"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Create project",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Localization articles content\",\r\n    \"description\": \"Some text..\",\r\n    \"languages\": {\r\n        \"source\": 1,\r\n        \"target\": [\r\n            2,\r\n            3\r\n        ]\r\n    },\r\n    \"settings\": {\r\n        \"useMachineTranslate\": false\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/projects",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"name\": \"Localization articles content\",\n    \"description\": \"Some text..\",\n    \"progress\": 0,\n    \"languages\": {\n        \"source\": {\n            \"id\": 1,\n            \"locale\": \"ru\",\n            \"name\": \"Russian\"\n        },\n        \"target\": [\n            {\n                \"id\": 2,\n                \"locale\": \"en\",\n                \"name\": \"English\" \n            }\n        ]\n    },\n    \"documents\": [],\n    \"performers\": [],\n    \"settings\": {\n        \"useMachineTranslate\": false\n    },\n    \"createdAt\": \"23-12-2021 12:12\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get projects",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/v1/projects",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "projects"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get projects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/projects",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "projects"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"name\": \"Localization articles content\",\r\n         \"languages\": {\r\n            \"source\": {\r\n                \"id\": 1,\r\n                \"locale\": \"ru\",\r\n                \"name\": \"Russian\"\r\n            },\r\n            \"target\": [\r\n                {\r\n                    \"id\": 2,\r\n                    \"locale\": \"en\",\r\n                    \"name\": \"English\" \r\n                }\r\n            ]\r\n        },\r\n        \"performersCount\": 2,\r\n        \"documentsCount\": 3,\r\n        \"usedMachineTranslation\": true,\r\n        \"createdAt\": \"23-12-2021 12:12\"\r\n    }\r\n]"
+            }
+          ]
+        },
+        {
+          "name": "Project details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/projects/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "projects",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Project details",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/projects/{{projectId}}",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "projects",
+                    "{{projectId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\r\n    \"id\": 1,\r\n    \"name\": \"Localization articles content\",\r\n    \"description\": \"Some text..\",\r\n    \"progress\": 20,\r\n    \"languages\": {\r\n        \"source\": {\r\n            \"id\": 1,\r\n            \"locale\": \"ru\",\r\n            \"name\": \"Russian\"\r\n        },\r\n        \"target\": [\r\n            {\r\n                \"id\": 2,\r\n                \"locale\": \"en\",\r\n                \"name\": \"English\" \r\n            }\r\n        ]\r\n    },\r\n    \"documents\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"acrtile-1.json\",\r\n            \"status\": \"created|in progress|compeled\",\r\n            \"progress\": 19.3,\r\n            \"createdAt\": \"23-12-2021 12:12\"\r\n        }\r\n    ],\r\n    \"performers\": [\r\n        {\r\n            \"id\": 1,\r\n            \"name\": \"Ivan Ivanov\",\r\n            \"email\": \"ivan@yandex.ru\",\r\n            \"addedAt\": \"25-12-2022 18:12\"\r\n        }\r\n    ],\r\n    \"settings\": {\r\n        \"useMachineTranslate\": false\r\n    },\r\n    \"createdAt\": \"23-12-2021 12:12\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Updated name\",\r\n    \"description\": \"Updated text..\",\r\n    \"settings\": {\r\n        \"useMachineTranslation\": false\r\n    }\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/projects/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "projects",
+                "1"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Update project",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Localization articles content [second]\",\r\n    \"description\": \"Some text..\",\r\n    \"languages\": {\r\n        \"target\": [\r\n            \"fr\"\r\n        ]\r\n    }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/projects/{{projectId}}",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "projects",
+                    "{{projectId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"id\": 1,\n    \"name\": \"Localization articles content\",\n    \"description\": \"Some text..\",\n    \"progress\": 0,\n    \"languages\": {\n        \"source\": {\n            \"id\": 1,\n            \"locale\": \"ru\",\n            \"name\": \"Russian\"\n        },\n        \"target\": [\n            {\n                \"id\": 2,\n                \"locale\": \"en\",\n                \"name\": \"English\" \n            }\n        ]\n    },\n    \"documents\": [],\n    \"performers\": [],\n    \"settings\": {\n        \"useMachineTranslate\": false\n    },\n    \"createdAt\": \"23-12-2021 12:12\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete project",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/projects/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "projects",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Add document(s)",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"projectId\": 1, //customize\r\n    \"documents\": [\r\n        {\r\n            \"name\": \"Test-2\",\r\n            \"data\": [\r\n                {\r\n                    \"key\": \"123 title\",\r\n                    \"value\": \"Some hosting environments have restrictive curl settings\"\r\n                },\r\n                {\r\n                    \"key\": \"description\",\r\n                    \"value\": \"handshake fails because of outdated CA certificates\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"Test-3\",\r\n            \"data\": [\r\n                {\r\n                    \"key\": \"various reasons\",\r\n                    \"value\": \"This could be due to firewall rules, DNS problems, or unstable internet\"\r\n                },\r\n                {\r\n                    \"key\": \"description\",\r\n                    \"value\": \"We need to provide troubleshooting steps\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/documents",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "documents"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Add document(s)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"projectId\": 1,\r\n    \"documents\": [\r\n        {\r\n            \"name\": \"article-1\",\r\n            \"data\": [\r\n                {\r\n                    \"key\": \"title\",\r\n                    \"value\": \"Some title\"\r\n                },\r\n                {\r\n                    \"key\": \"description\",\r\n                    \"value\": \"Some description\"\r\n                }\r\n            ],\r\n            \"metadata\": {\r\n                \"someKey\": \"someValue\"\r\n            }\r\n        }\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/documents",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get documents",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/documents?projectId=1 ",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "documents"
+              ],
+              "query": [
+                {
+                  "key": "projectId",
+                  "value": "1 "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get documents",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/documents?projectId=1",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 1,\n        \"name\": \"article-1\",\n        \"status\": \"created|in progress|compeled\",\n        \"progress\": 19.3,\n        \"createdAt\": \"23-12-2021 12:12\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get document",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/documents/2?lang=3",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "documents",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "lang",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Get document",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{host}}/v1/documents/{{documentId}}?lang=1",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    "{{documentId}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "lang",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"name\": \"article-1\",\n    \"data\": [\n        {\n            \"key\": \"title\",\n            \"original\": \"Original content\", \n            \"translation\": \"Some title\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Import translations",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"lang\": 4,\r\n    \"data\": [\r\n        {\r\n            \"key\": \"title\",\r\n            \"value\": \"123 Finished\"\r\n        },\r\n        {\r\n            \"key\": \"description\",\r\n            \"value\": \"Hello!\"\r\n        },\r\n         {\r\n            \"key\": \"body\",\r\n            \"value\": \"Some text!\"\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{host}}/v1/documents/2/import",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "documents",
+                "2",
+                "import"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Import translations",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"lang\": 1,\r\n    \"data\": [\r\n        {\r\n            \"key\": \"title\",\r\n            \"value\": \"Some title\"\r\n        },\r\n        {\r\n            \"key\": \"description\",\r\n            \"value\": \"Some description\"\r\n        }\r\n    ]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{host}}/v1/documents/{{documentId}}/import",
+                  "host": [
+                    "{{host}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "documents",
+                    "{{documentId}}",
+                    "import"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [],
+              "cookie": [],
+              "body": "{\n    \"status\": \"success\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete document",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{host}}/v1/documents/19",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "v1",
+                "documents",
+                "19"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documentation",
+      "item": [
+        {
+          "name": "api-docs",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8085/api-docs/openapi.json",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "api-docs",
+                "openapi.json"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
