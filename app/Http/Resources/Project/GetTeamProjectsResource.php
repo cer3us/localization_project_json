@@ -20,7 +20,6 @@ class GetTeamProjectsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'languages' => [
-                //`projects' belong to `languages`:
                 'source' => new LanguageResource($this->sourceLanguage),
                 'target' => LanguageResource::collection($this->targetLanguages())
             ],

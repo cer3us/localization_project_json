@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         Language::factory(5)
             ->create();
         Project::factory(10)
-            ->has(Document::factory(1)->has(Translation::factory(2)))
+            ->has(Document::factory(2)->has(Translation::factory(2)))
             ->has(Performer::factory(10))
             ->create();
     }

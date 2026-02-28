@@ -14,3 +14,4 @@ class LanguageController extends Controller
         return LanguageResource::collection(Language::all());
     }
 }
+    

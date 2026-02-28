@@ -32,7 +32,6 @@ class AccountController extends Controller
         ];
     }
 
-    //returns currently authenticated user(with a token):
     public function show()
     {
         return new UserResource(auth()->user());

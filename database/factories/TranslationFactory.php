@@ -11,14 +11,10 @@ class TranslationFactory extends Factory
     public function definition(): array
     {
         return [
-            // Default document (for standalone use) – will be overridden by relationships
             'document_id' => Document::factory(),
-
-            // Language ID: pick a random target language from the document's project
             'language_id' => function (array $attributes) {
                 $document = Document::with('project')->find($attributes['document_id']);
                 if (!$document || !$document->project) {
-                    // Fallback: random language (should not happen in seeded data)
                     return Language::inRandomOrder()->value('id');
                 }
 
@@ -30,11 +26,9 @@ class TranslationFactory extends Factory
                 return $targetIds[array_rand($targetIds)];
             },
 
-            // Data: translate the document's source segments into the chosen language
             'data' => function (array $attributes) {
                 $document = Document::with('project')->find($attributes['document_id']);
                 if (!$document) {
-                    // Fallback: random fake data
                     return [
                         ['key' => fake('ja_JP')->word, 'value' => fake('ja_JP')->sentence],
                     ];

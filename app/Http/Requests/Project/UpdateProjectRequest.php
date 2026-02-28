@@ -11,7 +11,6 @@ class UpdateProjectRequest extends FormRequest
         return [
             'name' => ['nullable', 'string', 'max:100'],
             'description' => ['nullable', 'string', 'max:300'],
-            //no spaces!
             'languages' => ['nullable', 'array', 'required_array_keys:source,target'],
             'languages.source' => ['nullable', 'int', 'exists:languages,id'],
             'languages.target' => ['nullable'],

@@ -15,10 +15,6 @@ class DocumentService
     private Project $project;
     private Document $document;
 
-    //accepts either a Project model instance or a project ID (integer):
-    //If $project is already a Project instance (checked via instanceof), it uses that instance directly.
-    //Otherwise, it treats $project as an integer ID, fetches the project from the database using findOrFail, and stores that model.
-    //The findOrFail method throws a ModelNotFoundException if no project exists with that ID, which will become a 404 error if not caught. 
     public function setProject(Project|int $project): DocumentService
     {
         $this->project = $project instanceof Project
@@ -40,10 +36,8 @@ class DocumentService
             ->pluck('locale', 'id');
 
         foreach ($documents as $docData) {
-            // 1. Create the document and get the model instance
             $document = $this->project->documents()->create($docData);
 
-            // 2. For each target language, generate and store translations
             foreach ($targetLanguages as $langId => $langLocale) {
                 $translatedData = Arr::map($docData['data'], function ($el) use ($langLocale, $sourceLanguage) {
                     return [
@@ -58,7 +52,6 @@ class DocumentService
                 ]);
             }
 
-            // 3. Update this document's progress
             $this->setDocument($document)->updateDocumentProgress();
         }
 
@@ -120,27 +113,21 @@ class DocumentService
             ->where('document_id', $this->document->id)
             ->first();
 
-        //`data` column in the document
         $sourceData = is_null($existingTranslation)
-            //use original `document.data` if no tranlations were found:
             ? $this->document->data
             : $existingTranslation->data;
 
         foreach ($sourceData as $item) {
-            //returns the first element  where `keys` in `translations` and `data.item` match
             $targetItem = Arr::first($translations, function ($el) use ($item) {
                 return $el['key'] === $item['key'];
             });
 
 
-            //if there is no match in the existing document.data, then keep the original state of `data.item` :
             if (is_null($targetItem)) {
                 if (is_null($existingTranslation)) {
-                    //to avoid keeping the non-translated text in the `translations`:
                     $item['value'] = '';
                 }
             } else {
-                //if there's a `key` match, than assign new value from the request to it:
                 $item['value'] = $targetItem['value'];
             }
             $translatedData[] = $item;
@@ -159,7 +146,7 @@ class DocumentService
     private function updateDocumentProgress(): void
     {
         // document.data.item * project.target_languages_ids = sum(items) = 100%
-        $totalSegments = $this->document->totalSegments(); // 3 items * 3 langs = 9
+        $totalSegments = $this->document->totalSegments();
         $totalTranslatedSegments = $this->document->totalTranslatedSegments();
 
         $currentProgress = round($totalTranslatedSegments * 100 / $totalSegments);

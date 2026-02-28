@@ -12,14 +12,13 @@ class ProjectService
 
     public function create(array $data): Project
     {
-        //Better to use DTO(Data Transfer Object) (github:spatie):
         return Project::query()->create([
             'name' => Arr::get($data, 'name'),
             'description' => Arr::get($data, 'description'),
             'source_language_id' => Arr::get($data, 'languages.source'),
             'target_languages_ids' => Arr::get($data, 'languages.target'),
             'use_machine_translation' => Arr::get($data, 'settings.useMachineTranslation'),
-            'user_id' => authUserId() //will save `id` of the current user into db 
+            'user_id' => authUserId() 
         ]);
     }
 
@@ -43,7 +42,6 @@ class ProjectService
     {
 
         $mappedData = [];
-        //converts standard array into . array format (languages.source):
         $dotArray = Arr::dot($data);
 
         foreach ($dotArray as $key => $value) {

@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class UserRequestTest extends TestCase
 {
-    // use RefreshDatabase; // Ensures a clean database for each test
+    // use RefreshDatabase;
 
     public function test_list_users()
     {
@@ -20,24 +20,21 @@ class UserRequestTest extends TestCase
             'name' => $user->name
         ];
 
-        $response = $this->actingAs($user, 'sanctum')  // authenticate using session cookie
+        $response = $this->actingAs($user, 'sanctum')
             ->get(route('users.list'));
 
-        //to test response code:
         $response->assertStatus(200);
 
-        //to test json structure: 
         $response->assertJsonStructure([
             '*' => [
                 'id',
                 'name',
                 'email',
-                // 'type',
-                // 'companyName'
+                'type',
+                'companyName'
             ]
         ]);
 
-        //checks if the json response contains a segment:  
         $response->assertJsonFragment($userTestJson);
     }
 
@@ -54,8 +51,6 @@ class UserRequestTest extends TestCase
         ];
         $response = $this->post(route('account.create'), $data);
 
-        $response->assertStatus(201);
-        //or
         $response->assertCreated();
 
         $response->assertJsonStructure([
@@ -71,14 +66,12 @@ class UserRequestTest extends TestCase
             ]
         ]);
 
-        //checks if the created account is found in the db:
         $this->assertDatabaseHas('users', [
             'id' => $response->json('data.id'),
             'name' => $data['name'],
             'email' => $data['email']
         ]);
 
-        //returns the original response from the api:
         dd($response->json());
     }
 }

@@ -11,7 +11,6 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:100'],
             'description' => ['nullable', 'string', 'max:300'],
-            //no spaces!
             'languages' => ['required', 'array', 'required_array_keys:source,target'],
             'languages.source' => ['required', 'int', 'exists:languages,id'],
             'languages.target' => ['required'],

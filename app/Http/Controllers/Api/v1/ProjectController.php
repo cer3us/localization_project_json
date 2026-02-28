@@ -44,11 +44,7 @@ class ProjectController extends Controller
 
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        // Fluent style (setProject() in the `ProjectService`:)
         return new ProjectResource(ProjectService::setProject($project)->update($request->validated()));
-
-        //Standard style:
-        // return new ProjectResource(ProjectService::update($request->validated()));
     }
 
     public function destroy(Project $project)
