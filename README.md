@@ -20,8 +20,8 @@ A Laravel 12 application for managing multilingual content – projects, documen
 API base: http://localhost/api/v1
 Swagger docs: http://localhost/api-docs
 
-🔹 Endpoints / Маршруты
-| Method/Метод | Endpoint/URL | Description/Описание | HTTP Status Codes / Коды состояния HTTP |
+🔹 Endpoints
+| Method | Endpoint | Description | HTTP Status Codes |
 | --- | --- | --- | --- |
 | POST | /api/v1/account/create | Create a new Account with the provided data | 201 Created |
 | POST | /api/v1/account/sign-in | Sign-in into the account (token returned) | 200 Ok |
@@ -43,7 +43,7 @@ Swagger docs: http://localhost/api-docs
 ## 📚 API Documentation
 - Interactive API documentation is automatically generated and available at /api-docs. It lists all endpoints, expected parameters, and some example responses.
 - To explore the API, you can use tools like Postman or simply visit the URL above.
-- LocJSON.postman_collection.json is inclueded in the root directory.
+- LocJSON.postman_collection.json is included in the root directory.
 
 ## 🧪 Testing
 - Some simple example feature tests included.
