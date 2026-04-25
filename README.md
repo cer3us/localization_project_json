@@ -53,5 +53,5 @@ Swagger docs: http://localhost/api-docs
 - The translate() helper (available globally) uses the `stichoza/google-translate-php` package to translate text between languages without using APIs (for free). It expects ISO 639-1 language codes (e.g., en, fr, ja).
 
 ## 📄 License
-MIT – do whatever you want, but attribution is appreciated. Thank you!
+MIT – do whatever you want, but attribution is appreciated. Good luck!
 
